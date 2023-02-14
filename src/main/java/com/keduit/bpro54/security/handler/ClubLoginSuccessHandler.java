@@ -16,6 +16,11 @@ import java.io.IOException;
 public class ClubLoginSuccessHandler implements AuthenticationSuccessHandler {
     private RedirectStrategy redirectStrategy;
     private PasswordEncoder passwordEncoder;
+
+    public ClubLoginSuccessHandler(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         log.info("==============================");
@@ -27,7 +32,7 @@ public class ClubLoginSuccessHandler implements AuthenticationSuccessHandler {
 
         boolean passwordResult = passwordEncoder.matches("1111", authMemberDTO.getPassword());
 
-        if (fromSocial && passwordResult) {
+        if (passwordResult) {
             redirectStrategy.sendRedirect(request, response, "/sample/modify?fromSocial");
         }
     }

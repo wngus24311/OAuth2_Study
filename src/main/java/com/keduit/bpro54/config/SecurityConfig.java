@@ -40,14 +40,16 @@ public class SecurityConfig {
 		http.csrf().disable();
 		http.logout();
 
-		http.oauth2Login().loginPage("/sample/login").successHandler(successHandler());
+//		http.oauth2Login().loginPage("/sample/login").successHandler(successHandler());
+		http.oauth2Login().loginPage("/sample/login");
+		http.rememberMe().tokenValiditySeconds(60 * 60 * 7).userDetailsService(clubUserDetailsService);
 
 		return http.build();
 	}
 
 	@Bean
 	public ClubLoginSuccessHandler successHandler() {
-		return new ClubLoginSuccessHandler();
+		return new ClubLoginSuccessHandler(passwordEncoder());
 	}
 	
 }
