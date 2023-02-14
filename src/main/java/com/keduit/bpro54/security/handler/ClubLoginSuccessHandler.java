@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @Log4j2
 public class ClubLoginSuccessHandler implements AuthenticationSuccessHandler {
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         log.info("==============================");

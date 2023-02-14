@@ -1,6 +1,5 @@
 package com.keduit.bpro54.config;
 
-import com.keduit.bpro54.security.handler.ClubLoginSuccessHandler;
 import com.keduit.bpro54.security.service.ClubUserDetailsService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +39,10 @@ public class SecurityConfig {
 		http.csrf().disable();
 		http.logout();
 
-		http.oauth2Login().loginPage("/sample/login").successHandler(successHandler());
+		http.oauth2Login().loginPage("/sample/login");
 
 		return http.build();
 	}
-
-	@Bean
-	public ClubLoginSuccessHandler successHandler() {
-		return new ClubLoginSuccessHandler();
-	}
+	
 	
 }
