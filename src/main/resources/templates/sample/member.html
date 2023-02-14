@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<h1>회원 페이지</h1>
+<div sec:authorize="hasRole('USER')">Has USER ROLE</div>
+<div sec:authorize="hasRole('MANAGER')">Has MANAGER ROLE</div>
+<div sec:authorize="hasRole('ADMIN')">Has ADMIN ROLE</div>
+
+<div sec:authorize="isAuthenticated()">
+    ONLY  Authenticated user can see this TEXT
+</div>
+
+Authenticated username:
+<div sec:authentication="name"></div>
+Authenticated user roles:
+<div sec:authentication="principal.authorities">
+</div>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</body>
+</html>
